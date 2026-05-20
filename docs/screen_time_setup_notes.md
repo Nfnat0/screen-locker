@@ -7,8 +7,11 @@ This project includes Screen Time integration code behind `AppBlockingManager`, 
 Files:
 
 - `ScreenLocker/Services/AppBlockingManager.swift`
+- `ScreenLocker/Services/DeviceActivityScheduleAdapter.swift`
+- `ScreenLocker/Services/ScheduleManager.swift`
 - `ScreenLocker/Services/SettingsStore.swift`
 - `ScreenLocker/Views/BlockedAppsView.swift`
+- `ScreenLocker/Views/ScreenTimeStatusView.swift`
 
 Frameworks used when available:
 
@@ -23,6 +26,7 @@ Implemented behavior:
 - Persist `FamilyActivitySelection` through `SettingsStore`.
 - Apply ManagedSettings shields during active sessions.
 - Clear all ManagedSettings shields when a session completes or breaks.
+- Persist Pro schedule records and route schedule enable/disable/delete through a guarded DeviceActivity adapter.
 - Fall back to local timer behavior with a visible warning when authorization or entitlement setup is unavailable.
 
 ## Required Manual Configuration
@@ -57,13 +61,15 @@ Potential next steps:
 - Add an entitlement-backed build configuration after the Apple Developer setup is complete.
 - Test `FamilyActivityPicker` selection persistence on device.
 - Confirm shield clearing on completion, early unlock, and app relaunch.
-- Add DeviceActivity monitoring for Pro schedules.
+- Validate DeviceActivity monitoring for Pro schedules on a physical device.
 - Add UI states for approved / denied / restricted / unavailable authorization outcomes.
 - Consider adding a debug-only "clear shields" button if testing leaves shields active.
 
 ## DeviceActivity Scheduling Notes
 
 The schedule foundation uses `DeviceActivityScheduleAdapter` to keep DeviceActivity calls isolated from SwiftUI screens.
+
+The current adapter starts or clears a guarded repeating DeviceActivity interval for each enabled schedule. Schedule weekday selections are persisted and shown in the app UI; entitlement-backed testing should confirm the final weekday-specific monitoring strategy before relying on recurring schedule behavior in production.
 
 Manual setup required before real scheduled monitoring is expected:
 
