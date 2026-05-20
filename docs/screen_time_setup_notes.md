@@ -60,3 +60,16 @@ Potential next steps:
 - Add DeviceActivity monitoring for Pro schedules.
 - Add UI states for approved / denied / restricted / unavailable authorization outcomes.
 - Consider adding a debug-only "clear shields" button if testing leaves shields active.
+
+## DeviceActivity Scheduling Notes
+
+The schedule foundation uses `DeviceActivityScheduleAdapter` to keep DeviceActivity calls isolated from SwiftUI screens.
+
+Manual setup required before real scheduled monitoring is expected:
+
+1. Confirm DeviceActivity capability and related entitlements in the Apple Developer account.
+2. Add any required DeviceActivity monitor extension target if schedule callbacks need to trigger shielding outside the foreground app.
+3. Test on a physical device with Screen Time authorization approved.
+4. Confirm schedules are cleared when users disable a schedule or delete it.
+
+The app must continue to show a clear unavailable/fallback message when DeviceActivity cannot start monitoring.

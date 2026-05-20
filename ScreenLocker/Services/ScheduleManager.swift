@@ -7,6 +7,7 @@ final class ScheduleManager: ObservableObject {
     @Published var lastErrorMessage: String?
 
     private var modelContext: ModelContext?
+    private let deviceActivityAdapter = DeviceActivityScheduleAdapter()
 
     func configure(modelContext: ModelContext) {
         guard self.modelContext == nil else { return }
@@ -68,16 +69,20 @@ final class ScheduleManager: ObservableObject {
         modelContext.insert(schedule)
         schedules.append(schedule)
         save()
+        handleAdapterResult(deviceActivityAdapter.apply(schedule))
         loadSchedules()
     }
 
     func toggle(_ schedule: DetoxScheduleRecord, isEnabled: Bool) {
         schedule.isEnabled = isEnabled
         save()
+        let result = isEnabled ? deviceActivityAdapter.apply(schedule) : deviceActivityAdapter.clear(schedule)
+        handleAdapterResult(result)
         loadSchedules()
     }
 
     func delete(_ schedule: DetoxScheduleRecord) {
+        handleAdapterResult(deviceActivityAdapter.clear(schedule))
         modelContext?.delete(schedule)
         schedules.removeAll { $0.id == schedule.id }
         save()
@@ -89,6 +94,15 @@ final class ScheduleManager: ObservableObject {
             lastErrorMessage = nil
         } catch {
             lastErrorMessage = "Schedule changes could not be saved."
+        }
+    }
+
+    private func handleAdapterResult(_ result: DeviceActivityScheduleAdapter.AdapterResult) {
+        switch result {
+        case .scheduled, .cleared:
+            break
+        case .failed(let message), .unavailable(let message):
+            lastErrorMessage = message
         }
     }
 

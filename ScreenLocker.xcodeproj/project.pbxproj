@@ -45,6 +45,7 @@
 		000000000000000000000236 /* DetoxScheduleRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000136 /* DetoxScheduleRecord.swift */; };
 		000000000000000000000237 /* ScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000137 /* ScheduleManager.swift */; };
 		000000000000000000000238 /* ScheduleEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000138 /* ScheduleEditorView.swift */; };
+		000000000000000000000239 /* DeviceActivityScheduleAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000139 /* DeviceActivityScheduleAdapter.swift */; };
 		000000000000000000000401 /* StatsCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000301 /* StatsCalculatorTests.swift */; };
 		000000000000000000000402 /* DetoxSessionRecordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000302 /* DetoxSessionRecordTests.swift */; };
 /* End PBXBuildFile section */
@@ -100,6 +101,7 @@
 		000000000000000000000136 /* DetoxScheduleRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetoxScheduleRecord.swift; sourceTree = "<group>"; };
 		000000000000000000000137 /* ScheduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleManager.swift; sourceTree = "<group>"; };
 		000000000000000000000138 /* ScheduleEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditorView.swift; sourceTree = "<group>"; };
+		000000000000000000000139 /* DeviceActivityScheduleAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityScheduleAdapter.swift; sourceTree = "<group>"; };
 		000000000000000000000301 /* StatsCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsCalculatorTests.swift; sourceTree = "<group>"; };
 		000000000000000000000302 /* DetoxSessionRecordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetoxSessionRecordTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,6 +182,7 @@
 				000000000000000000000111 /* AppBlockingManager.swift */,
 				000000000000000000000112 /* PurchaseManager.swift */,
 				000000000000000000000137 /* ScheduleManager.swift */,
+				000000000000000000000139 /* DeviceActivityScheduleAdapter.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				000000000000000000000236 /* DetoxScheduleRecord.swift in Sources */,
 				000000000000000000000237 /* ScheduleManager.swift in Sources */,
 				000000000000000000000238 /* ScheduleEditorView.swift in Sources */,
+				000000000000000000000239 /* DeviceActivityScheduleAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
