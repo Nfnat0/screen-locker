@@ -17,6 +17,7 @@ Read these before substantial implementation work:
 
 - `docs/codex_handoff.md` — current implementation status, architecture, structure, verification history, known limitations, and next tasks.
 - `docs/screen_time_setup_notes.md` — Screen Time / FamilyControls / ManagedSettings setup notes and wording constraints.
+- `docs/superpowers/plans/2026-05-21-product-hardening-pro-foundation.md` — next implementation plan for tests, Screen Time hardening, StoreKit, and schedule foundation.
 - `docs/digital_detox_timer_codex_plan.md` — original product and implementation plan.
 
 ## Scope
@@ -69,6 +70,7 @@ xcodebuild \
 - Do not claim the app can absolutely prevent uninstalling, bypassing, or disabling.
 - Preferred wording: "Guide to set up via Screen Time", "Reduce common escape routes", and "Add an extra layer of protection".
 - StoreKit, schedules, widgets, Live Activity, reflection log, export stats, and custom themes are currently placeholder Pro structures unless explicitly implemented later.
+- For app icon raster artwork, use the `imagegen` skill and move the selected generated asset into `ScreenLocker/Assets.xcassets/AppIcon.appiconset/`.
 
 ## Safety
 
