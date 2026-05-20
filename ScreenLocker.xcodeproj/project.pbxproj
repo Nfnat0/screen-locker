@@ -41,6 +41,7 @@
 		000000000000000000000232 /* BlockingAuthorizationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000132 /* BlockingAuthorizationState.swift */; };
 		000000000000000000000233 /* ShieldingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000133 /* ShieldingResult.swift */; };
 		000000000000000000000234 /* ScreenTimeStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000134 /* ScreenTimeStatusView.swift */; };
+		000000000000000000000235 /* ProProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000135 /* ProProduct.swift */; };
 		000000000000000000000401 /* StatsCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000301 /* StatsCalculatorTests.swift */; };
 		000000000000000000000402 /* DetoxSessionRecordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000302 /* DetoxSessionRecordTests.swift */; };
 /* End PBXBuildFile section */
@@ -92,6 +93,7 @@
 		000000000000000000000132 /* BlockingAuthorizationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockingAuthorizationState.swift; sourceTree = "<group>"; };
 		000000000000000000000133 /* ShieldingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldingResult.swift; sourceTree = "<group>"; };
 		000000000000000000000134 /* ScreenTimeStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeStatusView.swift; sourceTree = "<group>"; };
+		000000000000000000000135 /* ProProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProProduct.swift; sourceTree = "<group>"; };
 		000000000000000000000301 /* StatsCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsCalculatorTests.swift; sourceTree = "<group>"; };
 		000000000000000000000302 /* DetoxSessionRecordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetoxSessionRecordTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,6 +160,7 @@
 				000000000000000000000108 /* ProFeature.swift */,
 				000000000000000000000132 /* BlockingAuthorizationState.swift */,
 				000000000000000000000133 /* ShieldingResult.swift */,
+				000000000000000000000135 /* ProProduct.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				000000000000000000000232 /* BlockingAuthorizationState.swift in Sources */,
 				000000000000000000000233 /* ShieldingResult.swift in Sources */,
 				000000000000000000000234 /* ScreenTimeStatusView.swift in Sources */,
+				000000000000000000000235 /* ProProduct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

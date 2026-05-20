@@ -70,17 +70,21 @@ struct ProUnlockView: View {
                 .detoxCard()
 
                 PrimaryButton(
-                    title: purchaseManager.isProUnlocked ? "Pro Active" : "Unlock Pro Placeholder",
+                    title: purchaseManager.isProUnlocked ? "Pro Active" : "Unlock Pro",
                     systemImage: purchaseManager.isProUnlocked ? "checkmark.seal.fill" : "crown.fill",
                     isDisabled: purchaseManager.isProUnlocked
                 ) {
-                    purchaseManager.purchaseProPlaceholder()
+                    Task {
+                        await purchaseManager.purchasePro()
+                    }
                 }
 
-                Text("StoreKit product loading and transaction verification are intentionally left as TODOs until product IDs are configured.")
-                    .font(.footnote)
-                    .foregroundStyle(AppTheme.secondaryText)
-                    .fixedSize(horizontal: false, vertical: true)
+                if let message = purchaseManager.lastMessage {
+                    Text(message)
+                        .font(.footnote)
+                        .foregroundStyle(AppTheme.secondaryText)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
             }
             .padding(20)
             .padding(.bottom, 30)
