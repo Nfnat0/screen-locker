@@ -7,9 +7,10 @@ struct ScreenLockerApp: App {
     @StateObject private var appBlockingManager = AppBlockingManager()
     @StateObject private var purchaseManager = PurchaseManager()
     @StateObject private var sessionViewModel = DetoxSessionViewModel()
+    @StateObject private var scheduleManager = ScheduleManager()
 
     private let modelContainer: ModelContainer = {
-        let schema = Schema([DetoxSessionRecord.self])
+        let schema = Schema([DetoxSessionRecord.self, DetoxScheduleRecord.self])
         let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
         do {
@@ -26,6 +27,7 @@ struct ScreenLockerApp: App {
                 .environmentObject(appBlockingManager)
                 .environmentObject(purchaseManager)
                 .environmentObject(sessionViewModel)
+                .environmentObject(scheduleManager)
                 .modelContainer(modelContainer)
                 .preferredColorScheme(.dark)
                 .tint(AppTheme.cyan)

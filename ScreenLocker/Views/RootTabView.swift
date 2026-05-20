@@ -6,6 +6,7 @@ struct RootTabView: View {
     @EnvironmentObject private var settingsStore: SettingsStore
     @EnvironmentObject private var appBlockingManager: AppBlockingManager
     @EnvironmentObject private var sessionViewModel: DetoxSessionViewModel
+    @EnvironmentObject private var scheduleManager: ScheduleManager
 
     var body: some View {
         TabView {
@@ -36,6 +37,7 @@ struct RootTabView: View {
                 settingsStore: settingsStore,
                 appBlockingManager: appBlockingManager
             )
+            scheduleManager.configure(modelContext: modelContext)
         }
         .fullScreenCover(isPresented: activeSessionBinding) {
             if let session = sessionViewModel.activeSession {

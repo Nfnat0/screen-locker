@@ -185,13 +185,27 @@ struct ModesView: View {
 
 struct SchedulesView: View {
     @EnvironmentObject private var purchaseManager: PurchaseManager
+    @EnvironmentObject private var scheduleManager: ScheduleManager
+    @State private var showingScheduleEditor = false
 
     var body: some View {
         ScrollView {
             VStack(spacing: 14) {
-                schedulePreview(title: "Weekdays", time: "10:00 PM - 7:00 AM", days: "Mon Tue Wed Thu Fri")
-                schedulePreview(title: "Focus Time", time: "9:00 AM - 12:00 PM", days: "Mon Tue Wed Thu Fri")
-                schedulePreview(title: "Evening Detox", time: "8:00 PM - 11:00 PM", days: "Every day")
+                if scheduleManager.schedules.isEmpty {
+                    emptyState
+                } else {
+                    ForEach(scheduleManager.schedules) { schedule in
+                        scheduleRow(schedule)
+                    }
+                }
+
+                if let message = scheduleManager.lastErrorMessage {
+                    Text(message)
+                        .font(.footnote)
+                        .foregroundStyle(AppTheme.warning)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .detoxCard(padding: 14, cornerRadius: 16)
+                }
 
                 if !purchaseManager.isProUnlocked {
                     lockedBanner("Unlock schedules with Pro.")
@@ -205,6 +219,7 @@ struct SchedulesView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
+                    showingScheduleEditor = true
                 } label: {
                     Image(systemName: "plus")
                 }
@@ -212,30 +227,63 @@ struct SchedulesView: View {
                 .accessibilityLabel("Add schedule")
             }
         }
+        .sheet(isPresented: $showingScheduleEditor) {
+            ScheduleEditorView()
+        }
     }
 
-    private func schedulePreview(title: String, time: String, days: String) -> some View {
+    private var emptyState: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("No schedules yet")
+                .font(.headline.weight(.semibold))
+                .foregroundStyle(AppTheme.primaryText)
+
+            Text("Create a Pro schedule to prepare recurring detox windows.")
+                .font(.subheadline)
+                .foregroundStyle(AppTheme.secondaryText)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .detoxCard()
+    }
+
+    private func scheduleRow(_ schedule: DetoxScheduleRecord) -> some View {
         HStack(alignment: .top, spacing: 12) {
             VStack(alignment: .leading, spacing: 6) {
-                Text(title)
+                Text(schedule.title)
                     .font(.headline.weight(.semibold))
                     .foregroundStyle(AppTheme.primaryText)
 
-                Text(time)
+                Text(schedule.timeRangeText)
                     .font(.subheadline)
                     .foregroundStyle(AppTheme.secondaryText)
 
-                Text(days)
+                Text(schedule.weekdayText)
                     .font(.caption)
                     .foregroundStyle(AppTheme.mutedText)
             }
 
             Spacer()
 
-            Toggle("", isOn: .constant(true))
+            Button(role: .destructive) {
+                scheduleManager.delete(schedule)
+            } label: {
+                Image(systemName: "trash")
+                    .foregroundStyle(AppTheme.warning)
+            }
+            .buttonStyle(.plain)
+            .disabled(!purchaseManager.isProUnlocked)
+            .accessibilityLabel("Delete schedule")
+
+            Toggle(
+                "",
+                isOn: Binding(
+                    get: { schedule.isEnabled },
+                    set: { scheduleManager.toggle(schedule, isEnabled: $0) }
+                )
+            )
                 .labelsHidden()
                 .tint(AppTheme.cyan)
-                .disabled(true)
+                .disabled(!purchaseManager.isProUnlocked)
         }
         .detoxCard()
     }
