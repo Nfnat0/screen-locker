@@ -8,30 +8,6 @@ import FamilyControls
 import ManagedSettings
 #endif
 
-#if canImport(DeviceActivity)
-import DeviceActivity
-#endif
-
-enum BlockingAuthorizationState: String {
-    case notDetermined
-    case approved
-    case denied
-    case unavailable
-
-    var title: String {
-        switch self {
-        case .notDetermined:
-            "Not Requested"
-        case .approved:
-            "Allowed"
-        case .denied:
-            "Denied"
-        case .unavailable:
-            "Unavailable"
-        }
-    }
-}
-
 @MainActor
 final class AppBlockingManager: ObservableObject {
     @Published private(set) var authorizationState: BlockingAuthorizationState = .notDetermined
@@ -79,24 +55,38 @@ final class AppBlockingManager: ObservableObject {
         #endif
     }
 
-    func applyBlocking(from settingsStore: SettingsStore) {
+    @discardableResult
+    func applyBlocking(from settingsStore: SettingsStore) -> ShieldingResult {
         #if canImport(FamilyControls) && canImport(ManagedSettings)
         guard authorizationState == .approved else {
             isShieldingActive = false
-            lastErrorMessage = "Screen Time access is not approved. The local timer will continue without app shielding."
-            return
+            let message = "Screen Time access is not approved. The local timer will continue without app shielding."
+            lastErrorMessage = message
+            return .fallback(selectedItemCount: settingsStore.blockedAppCount, message: message)
         }
 
         let selection = settingsStore.activitySelection
+        let selectedItemCount = selection.applicationTokens.count + selection.categoryTokens.count + selection.webDomainTokens.count
+
         managedSettingsStore.shield.applications = selection.applicationTokens.isEmpty ? nil : selection.applicationTokens
         managedSettingsStore.shield.applicationCategories = selection.categoryTokens.isEmpty ? nil : .specific(selection.categoryTokens)
         managedSettingsStore.shield.webDomains = selection.webDomainTokens.isEmpty ? nil : selection.webDomainTokens
 
-        isShieldingActive = !selection.applicationTokens.isEmpty || !selection.categoryTokens.isEmpty || !selection.webDomainTokens.isEmpty
-        lastErrorMessage = isShieldingActive ? nil : "No Screen Time apps are selected. Mock blocked app count is shown in the UI."
+        isShieldingActive = selectedItemCount > 0
+
+        if isShieldingActive {
+            lastErrorMessage = nil
+            return .applied(selectedItemCount: selectedItemCount)
+        } else {
+            let message = "No Screen Time apps are selected. Mock blocked app count is shown in the UI."
+            lastErrorMessage = message
+            return .fallback(selectedItemCount: settingsStore.blockedAppCount, message: message)
+        }
         #else
         isShieldingActive = false
-        lastErrorMessage = "Screen Time shielding is unavailable in this build."
+        let message = "Screen Time shielding is unavailable in this build."
+        lastErrorMessage = message
+        return .fallback(selectedItemCount: settingsStore.blockedAppCount, message: message)
         #endif
     }
 

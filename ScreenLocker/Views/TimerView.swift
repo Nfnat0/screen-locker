@@ -56,12 +56,12 @@ struct TimerView: View {
                 .buttonStyle(.plain)
                 .accessibilityLabel("Session duration \(Formatters.minutesLabel(selectedDurationMinutes))")
 
-                if let message = appBlockingManager.lastErrorMessage,
-                   appBlockingManager.authorizationState != .approved {
-                    Label(message, systemImage: "exclamationmark.triangle.fill")
-                        .font(.footnote)
-                        .foregroundStyle(AppTheme.warning)
-                        .detoxCard(padding: 14, cornerRadius: 16)
+                if appBlockingManager.authorizationState != .approved || appBlockingManager.lastErrorMessage != nil {
+                    ScreenTimeStatusView(
+                        authorizationState: appBlockingManager.authorizationState,
+                        isShieldingActive: appBlockingManager.isShieldingActive,
+                        message: appBlockingManager.lastErrorMessage
+                    )
                 }
 
                 PrimaryButton(title: "Start Detox", systemImage: "play.fill") {
