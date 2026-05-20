@@ -1,0 +1,15 @@
+schemaVersion: 1
+enabledWorkflows:
+  - simulator
+  - ui-automation
+sessionDefaults:
+  projectPath: /Users/nf/dev/ios/screen-locker/ScreenLocker.xcodeproj
+  scheme: ScreenLocker
+  configuration: Debug
+  simulatorName: iPhone 17
+  simulatorId: 646B4A11-CB3E-4CF4-B17B-7735990FDDB8
+  simulatorPlatform: iOS Simulator
+  useLatestOS: true
+  suppressWarnings: true
+  platform: iOS
+  bundleId: com.example.ScreenLocker
