@@ -38,10 +38,23 @@
 		000000000000000000000229 /* BlockedAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000129 /* BlockedAppsView.swift */; };
 		000000000000000000000230 /* ProViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000130 /* ProViews.swift */; };
 		000000000000000000000231 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000131 /* Assets.xcassets */; };
+		000000000000000000000401 /* StatsCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000301 /* StatsCalculatorTests.swift */; };
+		000000000000000000000402 /* DetoxSessionRecordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000302 /* DetoxSessionRecordTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		000000000000000000000033 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000000000000000000000010;
+			remoteInfo = ScreenLocker;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		000000000000000000000011 /* ScreenLocker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenLocker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		000000000000000000000032 /* ScreenLockerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScreenLockerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		000000000000000000000101 /* ScreenLockerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenLockerApp.swift; sourceTree = "<group>"; };
 		000000000000000000000102 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		000000000000000000000103 /* SessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStatus.swift; sourceTree = "<group>"; };
@@ -73,10 +86,19 @@
 		000000000000000000000129 /* BlockedAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedAppsView.swift; sourceTree = "<group>"; };
 		000000000000000000000130 /* ProViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProViews.swift; sourceTree = "<group>"; };
 		000000000000000000000131 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		000000000000000000000301 /* StatsCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsCalculatorTests.swift; sourceTree = "<group>"; };
+		000000000000000000000302 /* DetoxSessionRecordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetoxSessionRecordTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		000000000000000000000014 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000035 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -90,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				000000000000000000000004 /* ScreenLocker */,
+				00000000000000000000000B /* ScreenLockerTests */,
 				000000000000000000000003 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -98,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				000000000000000000000011 /* ScreenLocker.app */,
+				000000000000000000000032 /* ScreenLockerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -188,6 +212,15 @@
 			path = Theme;
 			sourceTree = "<group>";
 		};
+		00000000000000000000000B /* ScreenLockerTests */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000301 /* StatsCalculatorTests.swift */,
+				000000000000000000000302 /* DetoxSessionRecordTests.swift */,
+			);
+			path = ScreenLockerTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -208,6 +241,24 @@
 			productReference = 000000000000000000000011 /* ScreenLocker.app */;
 			productType = "com.apple.product-type.application";
 		};
+		000000000000000000000030 /* ScreenLockerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 000000000000000000000038 /* Build configuration list for PBXNativeTarget "ScreenLockerTests" */;
+			buildPhases = (
+				000000000000000000000037 /* Sources */,
+				000000000000000000000035 /* Frameworks */,
+				000000000000000000000036 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				000000000000000000000034 /* PBXTargetDependency */,
+			);
+			name = ScreenLockerTests;
+			productName = ScreenLockerTests;
+			productReference = 000000000000000000000032 /* ScreenLockerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -220,6 +271,10 @@
 				TargetAttributes = {
 					000000000000000000000010 = {
 						CreatedOnToolsVersion = 26.5;
+					};
+					000000000000000000000030 = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 000000000000000000000010;
 					};
 				};
 			};
@@ -237,6 +292,7 @@
 			projectRoot = "";
 			targets = (
 				000000000000000000000010 /* ScreenLocker */,
+				000000000000000000000030 /* ScreenLockerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -247,6 +303,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				000000000000000000000231 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000036 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +353,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		000000000000000000000037 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000000401 /* StatsCalculatorTests.swift in Sources */,
+				000000000000000000000402 /* DetoxSessionRecordTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		000000000000000000000034 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 000000000000000000000010 /* ScreenLocker */;
+			targetProxy = 000000000000000000000033 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		000000000000000000000015 /* Debug */ = {
@@ -475,6 +555,60 @@
 			};
 			name = Release;
 		};
+		000000000000000000000039 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.ScreenLockerTests;
+				PRODUCT_NAME = ScreenLockerTests;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScreenLocker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ScreenLocker";
+			};
+			name = Debug;
+		};
+		000000000000000000000040 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.ScreenLockerTests;
+				PRODUCT_NAME = ScreenLockerTests;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScreenLocker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ScreenLocker";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -492,6 +626,15 @@
 			buildConfigurations = (
 				000000000000000000000019 /* Debug */,
 				000000000000000000000020 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		000000000000000000000038 /* Build configuration list for PBXNativeTarget "ScreenLockerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000000000039 /* Debug */,
+				000000000000000000000040 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
