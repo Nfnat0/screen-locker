@@ -12,4 +12,4 @@ sessionDefaults:
   useLatestOS: true
   suppressWarnings: true
   platform: iOS
-  bundleId: com.example.ScreenLocker
+  bundleId: com.Nfnat0.ScreenLocker

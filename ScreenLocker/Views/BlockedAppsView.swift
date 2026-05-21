@@ -17,19 +17,13 @@ struct BlockedAppsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
+                ScreenTimeStatusView(
+                    authorizationState: appBlockingManager.authorizationState,
+                    isShieldingActive: appBlockingManager.isShieldingActive,
+                    message: appBlockingManager.lastErrorMessage
+                )
+
                 VStack(alignment: .leading, spacing: 10) {
-                    HStack {
-                        Label("Screen Time", systemImage: "checkmark.shield.fill")
-                            .font(.headline.weight(.semibold))
-                            .foregroundStyle(AppTheme.primaryText)
-
-                        Spacer()
-
-                        Text(appBlockingManager.authorizationState.title)
-                            .font(.caption.weight(.semibold))
-                            .foregroundStyle(statusColor)
-                    }
-
                     Text("Select apps, categories, or web domains to shield during active detox sessions.")
                         .font(.subheadline)
                         .foregroundStyle(AppTheme.secondaryText)
@@ -41,14 +35,6 @@ struct BlockedAppsView: View {
                     }
                 }
                 .detoxCard()
-
-                if let message = appBlockingManager.lastErrorMessage {
-                    Text(message)
-                        .font(.footnote)
-                        .foregroundStyle(AppTheme.warning)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .detoxCard(padding: 14, cornerRadius: 16)
-                }
 
                 #if canImport(FamilyControls)
                 VStack(alignment: .leading, spacing: 14) {
@@ -114,19 +100,6 @@ struct BlockedAppsView: View {
         }
         .screenBackground()
         .navigationTitle("Blocked Apps")
-    }
-
-    private var statusColor: Color {
-        switch appBlockingManager.authorizationState {
-        case .approved:
-            AppTheme.cyan
-        case .denied:
-            AppTheme.warning
-        case .notDetermined:
-            AppTheme.secondaryText
-        case .unavailable:
-            AppTheme.warning
-        }
     }
 
     private var unavailablePicker: some View {
