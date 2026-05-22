@@ -8,7 +8,12 @@ Files:
 
 - `ScreenLocker/Services/AppBlockingManager.swift`
 - `ScreenLocker/Services/SettingsStore.swift`
+- `ScreenLocker/Services/DeviceActivityScheduleAdapter.swift`
+- `ScreenLocker/Services/ScheduleManager.swift`
+- `ScreenLocker/Models/BlockingAuthorizationState.swift`
+- `ScreenLocker/Models/ShieldingResult.swift`
 - `ScreenLocker/Views/BlockedAppsView.swift`
+- `ScreenLocker/Views/ScreenTimeStatusView.swift`
 
 Frameworks used when available:
 
@@ -23,6 +28,9 @@ Implemented behavior:
 - Persist `FamilyActivitySelection` through `SettingsStore`.
 - Apply ManagedSettings shields during active sessions.
 - Clear all ManagedSettings shields when a session completes or breaks.
+- Report shielding outcomes through `ShieldingResult` so the UI can distinguish active shields, no selection, unauthorized access, and unavailable builds.
+- Persist Pro schedules locally through SwiftData and route enabled schedules through `ScheduleManager`.
+- Register enabled schedule time windows through `DeviceActivityScheduleAdapter` when DeviceActivity is available.
 - Fall back to local timer behavior with a visible warning when authorization or entitlement setup is unavailable.
 
 ## Required Manual Configuration
@@ -34,6 +42,7 @@ Before expecting real app shielding to work:
 3. Add the required entitlements in Xcode.
 4. Keep bundle identifier and signing settings aligned with the entitlement-enabled app identifier.
 5. Test on a physical device where possible; simulator behavior may be limited.
+6. Add DeviceActivity entitlement setup before expecting Pro schedule monitoring to run in the background.
 
 Do not commit signing credentials, provisioning profiles, App Store Connect keys, or secrets.
 
@@ -57,6 +66,7 @@ Potential next steps:
 - Add an entitlement-backed build configuration after the Apple Developer setup is complete.
 - Test `FamilyActivityPicker` selection persistence on device.
 - Confirm shield clearing on completion, early unlock, and app relaunch.
-- Add DeviceActivity monitoring for Pro schedules.
+- Validate DeviceActivity schedule registration and stopping on an entitlement-enabled physical device.
+- Expand the DeviceActivity adapter if per-weekday system monitoring is required; weekday selections are currently persisted in `DetoxScheduleRecord`.
 - Add UI states for approved / denied / restricted / unavailable authorization outcomes.
 - Consider adding a debug-only "clear shields" button if testing leaves shields active.

@@ -70,14 +70,33 @@ struct ProUnlockView: View {
                 .detoxCard()
 
                 PrimaryButton(
-                    title: purchaseManager.isProUnlocked ? "Pro Active" : "Unlock Pro Placeholder",
+                    title: purchaseManager.isProUnlocked ? "Pro Active" : "Unlock Pro \(purchaseManager.primaryProductPrice)",
                     systemImage: purchaseManager.isProUnlocked ? "checkmark.seal.fill" : "crown.fill",
-                    isDisabled: purchaseManager.isProUnlocked
+                    isDisabled: purchaseManager.isProUnlocked || purchaseManager.isLoading
                 ) {
-                    purchaseManager.purchaseProPlaceholder()
+                    Task {
+                        await purchaseManager.purchasePro()
+                    }
                 }
 
-                Text("StoreKit product loading and transaction verification are intentionally left as TODOs until product IDs are configured.")
+                Button {
+                    purchaseManager.enableLocalDemoAccess()
+                } label: {
+                    Label("Enable Local Demo Access", systemImage: "testtube.2")
+                        .font(.footnote.weight(.semibold))
+                        .foregroundStyle(AppTheme.cyan)
+                }
+                .buttonStyle(.plain)
+                .disabled(purchaseManager.isProUnlocked)
+
+                if let message = purchaseManager.lastMessage {
+                    Text(message)
+                        .font(.footnote)
+                        .foregroundStyle(AppTheme.secondaryText)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+
+                Text("StoreKit 2 is wired for verified transactions. Until real product IDs and a StoreKit configuration are added, local demo access keeps Pro screens testable.")
                     .font(.footnote)
                     .foregroundStyle(AppTheme.secondaryText)
                     .fixedSize(horizontal: false, vertical: true)
@@ -87,6 +106,9 @@ struct ProUnlockView: View {
         }
         .screenBackground()
         .navigationTitle("Go Pro")
+        .task {
+            await purchaseManager.loadProducts()
+        }
     }
 }
 
@@ -181,13 +203,28 @@ struct ModesView: View {
 
 struct SchedulesView: View {
     @EnvironmentObject private var purchaseManager: PurchaseManager
+    @EnvironmentObject private var scheduleManager: ScheduleManager
+    @State private var showingEditor = false
+    @State private var editingSchedule: DetoxScheduleRecord?
 
     var body: some View {
         ScrollView {
             VStack(spacing: 14) {
-                schedulePreview(title: "Weekdays", time: "10:00 PM - 7:00 AM", days: "Mon Tue Wed Thu Fri")
-                schedulePreview(title: "Focus Time", time: "9:00 AM - 12:00 PM", days: "Mon Tue Wed Thu Fri")
-                schedulePreview(title: "Evening Detox", time: "8:00 PM - 11:00 PM", days: "Every day")
+                if scheduleManager.schedules.isEmpty {
+                    emptyScheduleState
+                } else {
+                    ForEach(scheduleManager.schedules) { schedule in
+                        scheduleRow(schedule)
+                    }
+                }
+
+                if let message = scheduleManager.lastMessage {
+                    Text(message)
+                        .font(.footnote)
+                        .foregroundStyle(AppTheme.secondaryText)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .detoxCard(padding: 14, cornerRadius: 16)
+                }
 
                 if !purchaseManager.isProUnlocked {
                     lockedBanner("Unlock schedules with Pro.")
@@ -201,6 +238,7 @@ struct SchedulesView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
+                    showingEditor = true
                 } label: {
                     Image(systemName: "plus")
                 }
@@ -208,32 +246,73 @@ struct SchedulesView: View {
                 .accessibilityLabel("Add schedule")
             }
         }
+        .sheet(isPresented: $showingEditor) {
+            ScheduleEditorView { draft in
+                scheduleManager.addSchedule(from: draft)
+            }
+        }
+        .sheet(item: $editingSchedule) { schedule in
+            ScheduleEditorView(schedule: schedule) { draft in
+                scheduleManager.updateSchedule(schedule, with: draft)
+            }
+        }
     }
 
-    private func schedulePreview(title: String, time: String, days: String) -> some View {
+    private var emptyScheduleState: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Image(systemName: "calendar.badge.plus")
+                .font(.title2)
+                .foregroundStyle(AppTheme.cyan)
+
+            Text("No schedules yet")
+                .font(.headline.weight(.semibold))
+                .foregroundStyle(AppTheme.primaryText)
+
+            Text("Create recurring detox windows for focus blocks, evenings, or sleep routines.")
+                .font(.subheadline)
+                .foregroundStyle(AppTheme.secondaryText)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .detoxCard()
+    }
+
+    private func scheduleRow(_ schedule: DetoxScheduleRecord) -> some View {
         HStack(alignment: .top, spacing: 12) {
             VStack(alignment: .leading, spacing: 6) {
-                Text(title)
+                Text(schedule.title)
                     .font(.headline.weight(.semibold))
                     .foregroundStyle(AppTheme.primaryText)
 
-                Text(time)
+                Text(schedule.timeRangeLabel)
                     .font(.subheadline)
                     .foregroundStyle(AppTheme.secondaryText)
 
-                Text(days)
+                Text(schedule.weekdaySummary)
                     .font(.caption)
                     .foregroundStyle(AppTheme.mutedText)
             }
 
             Spacer()
 
-            Toggle("", isOn: .constant(true))
+            Toggle("", isOn: Binding(
+                get: { schedule.isEnabled },
+                set: { scheduleManager.setSchedule(schedule, isEnabled: $0) }
+            ))
                 .labelsHidden()
                 .tint(AppTheme.cyan)
-                .disabled(true)
         }
         .detoxCard()
+        .contentShape(Rectangle())
+        .onTapGesture {
+            editingSchedule = schedule
+        }
+        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+            Button(role: .destructive) {
+                scheduleManager.deleteSchedule(schedule)
+            } label: {
+                Label("Delete", systemImage: "trash")
+            }
+        }
     }
 }
 

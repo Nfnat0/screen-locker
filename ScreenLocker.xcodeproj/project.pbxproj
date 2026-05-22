@@ -38,10 +38,31 @@
 		000000000000000000000229 /* BlockedAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000129 /* BlockedAppsView.swift */; };
 		000000000000000000000230 /* ProViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000130 /* ProViews.swift */; };
 		000000000000000000000231 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000131 /* Assets.xcassets */; };
+		000000000000000000000232 /* BlockingAuthorizationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000132 /* BlockingAuthorizationState.swift */; };
+		000000000000000000000233 /* ShieldingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000133 /* ShieldingResult.swift */; };
+		000000000000000000000234 /* ProProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000134 /* ProProduct.swift */; };
+		000000000000000000000235 /* DetoxScheduleRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000135 /* DetoxScheduleRecord.swift */; };
+		000000000000000000000236 /* ScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000136 /* ScheduleManager.swift */; };
+		000000000000000000000237 /* DeviceActivityScheduleAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000137 /* DeviceActivityScheduleAdapter.swift */; };
+		000000000000000000000238 /* ScreenTimeStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000138 /* ScreenTimeStatusView.swift */; };
+		000000000000000000000239 /* ScheduleEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000139 /* ScheduleEditorView.swift */; };
+		000000000000000000000240 /* StatsCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000151 /* StatsCalculatorTests.swift */; };
+		000000000000000000000241 /* DetoxSessionRecordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000152 /* DetoxSessionRecordTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		000000000000000000000037 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000000000000000000000010;
+			remoteInfo = ScreenLocker;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		000000000000000000000011 /* ScreenLocker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenLocker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		000000000000000000000021 /* ScreenLockerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScreenLockerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		000000000000000000000101 /* ScreenLockerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenLockerApp.swift; sourceTree = "<group>"; };
 		000000000000000000000102 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		000000000000000000000103 /* SessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStatus.swift; sourceTree = "<group>"; };
@@ -73,10 +94,27 @@
 		000000000000000000000129 /* BlockedAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedAppsView.swift; sourceTree = "<group>"; };
 		000000000000000000000130 /* ProViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProViews.swift; sourceTree = "<group>"; };
 		000000000000000000000131 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		000000000000000000000132 /* BlockingAuthorizationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockingAuthorizationState.swift; sourceTree = "<group>"; };
+		000000000000000000000133 /* ShieldingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldingResult.swift; sourceTree = "<group>"; };
+		000000000000000000000134 /* ProProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProProduct.swift; sourceTree = "<group>"; };
+		000000000000000000000135 /* DetoxScheduleRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetoxScheduleRecord.swift; sourceTree = "<group>"; };
+		000000000000000000000136 /* ScheduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleManager.swift; sourceTree = "<group>"; };
+		000000000000000000000137 /* DeviceActivityScheduleAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityScheduleAdapter.swift; sourceTree = "<group>"; };
+		000000000000000000000138 /* ScreenTimeStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeStatusView.swift; sourceTree = "<group>"; };
+		000000000000000000000139 /* ScheduleEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditorView.swift; sourceTree = "<group>"; };
+		000000000000000000000151 /* StatsCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsCalculatorTests.swift; sourceTree = "<group>"; };
+		000000000000000000000152 /* DetoxSessionRecordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetoxSessionRecordTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		000000000000000000000014 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000032 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -90,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				000000000000000000000004 /* ScreenLocker */,
+				00000000000000000000000B /* ScreenLockerTests */,
 				000000000000000000000003 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -98,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				000000000000000000000011 /* ScreenLocker.app */,
+				000000000000000000000021 /* ScreenLockerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,6 +166,10 @@
 				000000000000000000000106 /* DetoxSessionRecord.swift */,
 				000000000000000000000107 /* DetoxStats.swift */,
 				000000000000000000000108 /* ProFeature.swift */,
+				000000000000000000000132 /* BlockingAuthorizationState.swift */,
+				000000000000000000000133 /* ShieldingResult.swift */,
+				000000000000000000000134 /* ProProduct.swift */,
+				000000000000000000000135 /* DetoxScheduleRecord.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -137,6 +181,8 @@
 				000000000000000000000110 /* SettingsStore.swift */,
 				000000000000000000000111 /* AppBlockingManager.swift */,
 				000000000000000000000112 /* PurchaseManager.swift */,
+				000000000000000000000136 /* ScheduleManager.swift */,
+				000000000000000000000137 /* DeviceActivityScheduleAdapter.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -160,6 +206,8 @@
 				000000000000000000000128 /* SettingsView.swift */,
 				000000000000000000000129 /* BlockedAppsView.swift */,
 				000000000000000000000130 /* ProViews.swift */,
+				000000000000000000000138 /* ScreenTimeStatusView.swift */,
+				000000000000000000000139 /* ScheduleEditorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -188,6 +236,15 @@
 			path = Theme;
 			sourceTree = "<group>";
 		};
+		00000000000000000000000B /* ScreenLockerTests */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000151 /* StatsCalculatorTests.swift */,
+				000000000000000000000152 /* DetoxSessionRecordTests.swift */,
+			);
+			path = ScreenLockerTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -208,6 +265,24 @@
 			productReference = 000000000000000000000011 /* ScreenLocker.app */;
 			productType = "com.apple.product-type.application";
 		};
+		000000000000000000000030 /* ScreenLockerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 000000000000000000000034 /* Build configuration list for PBXNativeTarget "ScreenLockerTests" */;
+			buildPhases = (
+				000000000000000000000031 /* Sources */,
+				000000000000000000000032 /* Frameworks */,
+				000000000000000000000033 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				000000000000000000000038 /* PBXTargetDependency */,
+			);
+			name = ScreenLockerTests;
+			productName = ScreenLockerTests;
+			productReference = 000000000000000000000021 /* ScreenLockerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -220,6 +295,10 @@
 				TargetAttributes = {
 					000000000000000000000010 = {
 						CreatedOnToolsVersion = 26.5;
+					};
+					000000000000000000000030 = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 000000000000000000000010;
 					};
 				};
 			};
@@ -237,6 +316,7 @@
 			projectRoot = "";
 			targets = (
 				000000000000000000000010 /* ScreenLocker */,
+				000000000000000000000030 /* ScreenLockerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -247,6 +327,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				000000000000000000000231 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000033 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,10 +352,16 @@
 				000000000000000000000206 /* DetoxSessionRecord.swift in Sources */,
 				000000000000000000000207 /* DetoxStats.swift in Sources */,
 				000000000000000000000208 /* ProFeature.swift in Sources */,
+				000000000000000000000232 /* BlockingAuthorizationState.swift in Sources */,
+				000000000000000000000233 /* ShieldingResult.swift in Sources */,
+				000000000000000000000234 /* ProProduct.swift in Sources */,
+				000000000000000000000235 /* DetoxScheduleRecord.swift in Sources */,
 				000000000000000000000209 /* StatsCalculator.swift in Sources */,
 				000000000000000000000210 /* SettingsStore.swift in Sources */,
 				000000000000000000000211 /* AppBlockingManager.swift in Sources */,
 				000000000000000000000212 /* PurchaseManager.swift in Sources */,
+				000000000000000000000236 /* ScheduleManager.swift in Sources */,
+				000000000000000000000237 /* DeviceActivityScheduleAdapter.swift in Sources */,
 				000000000000000000000213 /* DetoxSessionViewModel.swift in Sources */,
 				000000000000000000000214 /* PrimaryButton.swift in Sources */,
 				000000000000000000000215 /* ProgressRingView.swift in Sources */,
@@ -287,10 +380,29 @@
 				000000000000000000000228 /* SettingsView.swift in Sources */,
 				000000000000000000000229 /* BlockedAppsView.swift in Sources */,
 				000000000000000000000230 /* ProViews.swift in Sources */,
+				000000000000000000000238 /* ScreenTimeStatusView.swift in Sources */,
+				000000000000000000000239 /* ScheduleEditorView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000031 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000000240 /* StatsCalculatorTests.swift in Sources */,
+				000000000000000000000241 /* DetoxSessionRecordTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		000000000000000000000038 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 000000000000000000000010 /* ScreenLocker */;
+			targetProxy = 000000000000000000000037 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		000000000000000000000015 /* Debug */ = {
@@ -475,6 +587,56 @@
 			};
 			name = Release;
 		};
+		000000000000000000000035 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.ScreenLockerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScreenLocker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ScreenLocker";
+				TEST_TARGET_NAME = ScreenLocker;
+			};
+			name = Debug;
+		};
+		000000000000000000000036 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.ScreenLockerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScreenLocker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ScreenLocker";
+				TEST_TARGET_NAME = ScreenLocker;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -492,6 +654,15 @@
 			buildConfigurations = (
 				000000000000000000000019 /* Debug */,
 				000000000000000000000020 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		000000000000000000000034 /* Build configuration list for PBXNativeTarget "ScreenLockerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000000000035 /* Debug */,
+				000000000000000000000036 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

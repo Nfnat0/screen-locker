@@ -17,37 +17,42 @@ struct BlockedAppsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
-                VStack(alignment: .leading, spacing: 10) {
-                    HStack {
-                        Label("Screen Time", systemImage: "checkmark.shield.fill")
-                            .font(.headline.weight(.semibold))
-                            .foregroundStyle(AppTheme.primaryText)
-
-                        Spacer()
-
-                        Text(appBlockingManager.authorizationState.title)
-                            .font(.caption.weight(.semibold))
-                            .foregroundStyle(statusColor)
+                ScreenTimeStatusView(
+                    authorizationState: appBlockingManager.authorizationState,
+                    shieldingResult: appBlockingManager.lastShieldingResult,
+                    actionTitle: "Request Authorization"
+                ) {
+                    Task {
+                        await appBlockingManager.requestAuthorization()
                     }
+                }
+
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Selection")
+                        .font(.headline.weight(.semibold))
+                        .foregroundStyle(AppTheme.primaryText)
 
                     Text("Select apps, categories, or web domains to shield during active detox sessions.")
                         .font(.subheadline)
                         .foregroundStyle(AppTheme.secondaryText)
-
-                    PrimaryButton(title: "Request Authorization", systemImage: "lock.shield") {
-                        Task {
-                            await appBlockingManager.requestAuthorization()
-                        }
-                    }
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 .detoxCard()
 
-                if let message = appBlockingManager.lastErrorMessage {
-                    Text(message)
-                        .font(.footnote)
-                        .foregroundStyle(AppTheme.warning)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .detoxCard(padding: 14, cornerRadius: 16)
+                if let message = appBlockingManager.lastErrorMessage,
+                   appBlockingManager.authorizationState != .notDetermined {
+                    Button {
+                        Task {
+                            await appBlockingManager.requestAuthorization()
+                        }
+                    } label: {
+                        Label(message, systemImage: "exclamationmark.triangle.fill")
+                            .font(.footnote)
+                            .foregroundStyle(AppTheme.warning)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .detoxCard(padding: 14, cornerRadius: 16)
+                    }
+                    .buttonStyle(.plain)
                 }
 
                 #if canImport(FamilyControls)
@@ -114,19 +119,6 @@ struct BlockedAppsView: View {
         }
         .screenBackground()
         .navigationTitle("Blocked Apps")
-    }
-
-    private var statusColor: Color {
-        switch appBlockingManager.authorizationState {
-        case .approved:
-            AppTheme.cyan
-        case .denied:
-            AppTheme.warning
-        case .notDetermined:
-            AppTheme.secondaryText
-        case .unavailable:
-            AppTheme.warning
-        }
     }
 
     private var unavailablePicker: some View {

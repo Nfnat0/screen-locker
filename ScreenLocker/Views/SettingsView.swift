@@ -61,8 +61,10 @@ struct SettingsView: View {
                     Divider().overlay(Color.white.opacity(0.08))
 
                     Button {
-                        purchaseManager.restorePurchases()
-                        showingPurchaseMessage = true
+                        Task {
+                            await purchaseManager.restorePurchases()
+                            showingPurchaseMessage = true
+                        }
                     } label: {
                         SettingRowView(title: "Restore Purchase", iconName: "arrow.clockwise")
                     }
